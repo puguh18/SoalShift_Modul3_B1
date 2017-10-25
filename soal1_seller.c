@@ -37,7 +37,7 @@ int main() {
     
     while(1){
         int k;
-        printf("WELKAM TO BLEK MEJIK WIPEN STOR\n");
+        printf("\nWELKAM TO BLEK MEJIK WIPEN STOR\n");
         printf("~ seller mode ~\n");
         printf("1. Check Stock  2. Add Stock  <and other number to exit>\n");
         scanf("%d", &k);
