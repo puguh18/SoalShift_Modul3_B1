@@ -6,8 +6,6 @@
 #include <ctype.h>
 #include <pthread.h>
 
-int flag = 0;
-
 static void* lohans_life(void *arg){
     int *temp = (int*)arg;
     while(1){
