@@ -7,6 +7,12 @@
 
 char* types[] = {"MP4A1", "PM2-V1", "SPR-3", "SS2-V5", "SPG1-V3", "MINE"};
 
+void check(int *stock) {
+    for(int i = 0; i < 6; i++)
+        printf("%s : %d\n", types[i], stock[i]);
+    putchar('\n');
+}
+
 int main() {
     key_t key = 1234;
     int *stock;
