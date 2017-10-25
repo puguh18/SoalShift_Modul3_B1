@@ -13,6 +13,22 @@ void check(int *stock) {
     putchar('\n');
 }
 
+void buy(int *stock){
+    char buff[10];
+    int count, check = -1;
+    printf("Enter weapon name and amount >>");
+    scanf("%s %d", buff, &count);
+    for(int i = 0; i < 6; i++)
+        if(strcmp(buff, types[i]) == 0) check = i;
+    if(check == -1) printf("ERROR: UNKNOWN WEAPON!!\n");
+    else if(stock[check] >= count){
+        stock[check] -= count;
+        printf("%s successfully purchased\n", types[check]);
+        printf("%s now: %d\n", types[check], stock[check]);
+    }
+    else printf("UNABLE TO PURCHASE WEAPON: NOT ENOUGH STOCK\n");
+}
+
 int main() {
     key_t key = 1234;
     int *stock;
@@ -21,7 +37,7 @@ int main() {
     
     while(1){
         int k;
-        printf("WELKAM TO BLEK MEJIK WIPEN STOR\n");
+        printf("\nWELKAM TO BLEK MEJIK WIPEN STOR\n");
         printf("~ buyer mode ~\n");
         printf("1. Check Stock  2. Buy  <and other number to exit>\n");
         scanf("%d", &k);
@@ -30,7 +46,7 @@ int main() {
         else break;
     }
     
-    shmdt(value);
+    shmdt(stock);
     shmctl(shmid, IPC_RMID, NULL);
     return 0;
 }
