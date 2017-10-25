@@ -13,9 +13,13 @@ static void* finding(void* arg){
     char buff[50];
     char* n = *((char**)arg);
     while(fscanf(f, "%s", buff) != EOF){
-        printf("%s\n", buff);
+        if(!isalnum(buff[strlen(buff)-1]))
+            buff[strlen(buff)-1] = '\0';
+        if (strcmp(buff, n) == 0)
+            c++;
     }
-    printf("%s\n", n);
+    printf("%s : %d\n", n, c);
+    fclose(f);
     return NULL;
 }
 
