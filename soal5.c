@@ -7,7 +7,14 @@
 #include <pthread.h>
 
 static void* finding(void* arg){
+    FILE *f = fopen("Novel.txt", "r");
+    if (f == NULL) exit(1);
+    int c = 0;
+    char buff[50];
     char* n = *((char**)arg);
+    while(fscanf(f, "%s", buff) != EOF){
+        printf("%s\n", buff);
+    }
     printf("%s\n", n);
     return NULL;
 }
@@ -22,6 +29,8 @@ int main(int argc, char *argv[]) {
     for(int i = 1; i < argc; i++){
         find[i-1] = argv[i];
         s = pthread_create(&threads[i-1], NULL, &finding, &find[i-1]);
+        if (s != 0)
+            handle_error_en(s, "pthread_attr_init");
     }
     for(int i = 0; i < argc - 1; i++){
         s = pthread_join(threads[i], NULL);
