@@ -29,8 +29,6 @@ int main(int argc, char *argv[]) {
     for(int i = 1; i < argc; i++){
         find[i-1] = argv[i];
         s = pthread_create(&threads[i-1], NULL, &finding, &find[i-1]);
-        if (s != 0)
-            handle_error_en(s, "pthread_attr_init");
     }
     for(int i = 0; i < argc - 1; i++){
         s = pthread_join(threads[i], NULL);
